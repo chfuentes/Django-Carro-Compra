@@ -19,7 +19,7 @@
               {{ total_items }} item{{ total_items|pluralize }},
               ${{ carro.obtiene_precio_total }}
             </a>
-          {% elif not order %}
+          {% elif not orden %}
             Tu carro de compras esta vacio
           {% endif %}
         {% endwith %}

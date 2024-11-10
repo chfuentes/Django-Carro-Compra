@@ -221,11 +221,11 @@ ul.errorlist {
     margin-top:10px;
 }
 
-.order-form {
+.form-orden {
     float:left;
 }
 
-.order-info {
+.info-orden {
     float:right;
     width:300px;
     background:#efefef;
@@ -234,22 +234,22 @@ ul.errorlist {
     border-bottom:4px solid #5993bb;
 }
 
-.order-info h3 {
+.info-orden h3 {
     color:#5993bb;
 }
 
-.order-info ul li {
+.info-orden ul li {
     margin:0;
     padding:0;
     font-size:14px;
 }
 
-.order-info p {
+.info-orden p {
     font-weight:bold;
     float:right;
 }
 
-.order-info span {
+.info-orden span {
     float:right;
 }
 

@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+  Crear Orden
+{% endblock %}
+
+{% block content %}
+  <h1>Crear Orden</h1>
+  <div class="info-orden">
+    <h3>Tu orden</h3>
+    <ul>
+      {% for item in carro %}
+        <li>
+          {{ item.cantidad }}x {{ item.producto.nombre }}
+          <span>${{ item.precio_total }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p>Total: ${{ carro.obtiene_precio_total }}</p>
+  </div>
+  <form method="post" class="form-orden">
+    {{ form.as_p }}
+    <p><input type="submit" value="Crear Orden"></p>
+    {% csrf_token %}
+  </form>
+{% endblock %}
