@@ -1,0 +1,65 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+  Tu carrito de compra
+{% endblock %}
+
+{% block content %}
+  <h1>Tu carrito de compra</h1>
+  <table class="carro">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Quitar</th>
+        <th>Precio Unitario</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in carro %}
+        {% with producto=item.producto %}
+          <tr>
+            <td>
+              <a href="{{ producto.get_absolute_url }}">
+                <img src="{% if producto.imagen %}
+                    {{ producto.imagen.url }}
+                  {% else %}
+                    {% static 'img/no_image.png' %}
+                  {% endif %}" />
+              </a>
+            </td>
+            <td>{{ producto.nombre }}</td>
+            <td>
+              <form action="{% url 'carro:agregar_a_carro' producto.id %}" method="post">
+                {{ item.actualizar_cantidad_form.cantidad }}
+                {{ item.actualizar_cantidad_form.override }}
+                <input type="submit" value="Actualizar" />
+                {% csrf_token %}
+              </form>
+            </td>
+            <td>
+              <form action="{% url 'carro:quitar_de_carro' producto.id %}" method="post">
+                <input type="submit" value="Quitar" />
+                {% csrf_token %}
+              </form>
+            </td>
+            <td class="num">${{ item.precio }}</td>
+            <td class="num">${{ item.precio_total }}</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+      <tr class="total">
+        <td>Total</td>
+        <td colspan="4"></td>
+        <td class="num">${{ carro.obtiene_precio_total }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-right">
+    <a href="{% url 'shop:lista_producto' %}" class="button light">Seguir viendo productos</a>
+    {% comment %} <a href="{% url 'ordenes:crear_orden' %}" class="button">Checkout</a> {% endcomment %}
+  </p>
+{% endblock %}

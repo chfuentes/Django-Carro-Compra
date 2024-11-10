@@ -15,7 +15,7 @@
         {% with total_items=carro|length %}
           {% if total_items > 0 %}
             Tu carro de compras:
-            <a href="{% url "carro:detalle" %}">
+            <a href="{% url "carro:detalle_carro" %}">
               {{ total_items }} item{{ total_items|pluralize }},
               ${{ carro.obtiene_precio_total }}
             </a>

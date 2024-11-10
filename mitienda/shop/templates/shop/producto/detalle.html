@@ -15,11 +15,11 @@
       </a>
     </h2>
     <p class="price">${{ producto.precio }}</p>
-    {% comment %} <form action="{% url "carro:agrega_carro" producto.id %}" method="post">
+    <form action="{% url "carro:agregar_a_carro" producto.id %}" method="post">
       {% csrf_token %}
-      {{ cart_product_form }}
+      {{ form_agregar_producto }}
       <input type="submit" value="Agrega al carro de compra">
-    </form> {% endcomment %}
+    </form> 
     {{ producto.descripcion|linebreaks }}
   </div>
 {% endblock %}
